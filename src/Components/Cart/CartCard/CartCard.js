@@ -32,7 +32,6 @@ export default function CartCard(props){
                         onClick={()=>{
                             dispatch(addTotals(item.price))
                             dispatch(addItemCount((props.id-1)))
-                            console.log(itemCount);
                         }}
                     >+</button></span>
                     <span>{item.count}</span>

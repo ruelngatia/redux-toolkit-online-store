@@ -107,7 +107,7 @@ export default function AddingProducts(props){
                     title: title,
                     price: price,
                     description: description,
-                    image: 'https://i.pravatar.cc',
+                    image: image,
                     category: category
                 }
 
