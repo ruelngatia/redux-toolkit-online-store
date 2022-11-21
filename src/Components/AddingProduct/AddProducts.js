@@ -1,11 +1,14 @@
 import axios from "axios";
 import React ,{useEffect, useRef, useState} from "react"; 
+import { useDispatch } from "react-redux";
 import { useNavigate} from "react-router-dom";
+import { getItemList } from "../../Redux/ItemSlice";
 import './AddingProducts.css' 
 
 export default function AddingProducts(props){
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [title ,setTitle] = useState('')
     const [description ,setdescription] = useState('')
@@ -109,7 +112,7 @@ export default function AddingProducts(props){
                     console.log('called');
                     postItem(product)
                 }
-                
+                dispatch(getItemList()) 
             
                 navigate('/')
                 

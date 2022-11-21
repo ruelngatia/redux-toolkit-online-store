@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { MdAddShoppingCart } from "react-icons/md";
 import './Card.css'
-import { addCheckoutItems } from '../../Redux/CheckoutSlice';
+import { addCheckoutItems, setTotals } from '../../Redux/CheckoutSlice';
 
 
 
@@ -29,9 +29,11 @@ export default function Card(props) {
         <MdAddShoppingCart onClick={
           ()=>{
             dispatch(addCheckoutItems({
-              name: items[key].name,
-              price: items[key]?.price
+              name: items[key].title,
+              price: items[key]?.price,
+              count: 1
             }))
+            dispatch(setTotals(parseInt(items[key]?.price)))
           }
         }/>
 
