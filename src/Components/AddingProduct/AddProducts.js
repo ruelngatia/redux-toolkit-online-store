@@ -1,5 +1,6 @@
-import React from "react"; 
-import { Link, Navigate, Route ,useNavigate} from "react-router-dom";
+import axios from "axios";
+import React ,{useRef} from "react"; 
+import { useNavigate} from "react-router-dom";
 import './AddingProducts.css' 
 
 export default function AddingProducts(props){
@@ -10,31 +11,40 @@ export default function AddingProducts(props){
     let category 
     let image;
 
+    const navigate = useNavigate()
+    const ref = useRef()
+
     function formValidator(){
         if(title === '' || title == null){
-            alert('enter missing field')
+            alert('enter missing title')
+            
             return false
         }
         if(description === '' || description == null){
-            alert('enter missing field')
+            alert('enter missing des')
             return false
         }
         if(price === '' || price == null){
-            alert('enter missing field')
+            alert('enter missing price')
             return false
         }
         if(category === '' || category == null){
             alert('enter missing field')
             return false
         }
-        if(image === '' || image == null){
-            alert('enter missing field')
-            return false
-        }
+        // if(image === '' || image == null){
+        //     alert('enter missing category')
+        //     return false
+        // }
        
     }
 
-    const navigate = useNavigate()
+    const postItem = (item)=>{
+
+        axios.post('https://online-store-b60ae-default-rtdb.firebaseio.com/items.json',item)
+
+    }
+    
 
     return(
         <div className="adding-products">
@@ -72,21 +82,36 @@ export default function AddingProducts(props){
 
             </div>
 
+            {console.log(title)}
+
             <button type="button" onClick={()=>{
                 
-                if(!formValidator()){
-                    return;
+                console.log(title);
+                console.log(price);
+                console.log(description);
+                console.log(category);
+
+
+                 let product = {
+                    title: title,
+                    price: price,
+                    description: description,
+                    image: 'https://i.pravatar.cc',
+                    category: category
                 }
-                // let product ={
-                //     id: Math.random().toFixed(1),
-                //     title: title.value,
-                //     price: price.value,
-                //     description: description.value,
-                //     image: 'https://i.pravatar.cc',
-                //     category: category.value
+
+                console.log(product);
+    
+
+                // if(!formValidator()){
+                //     return;
+                // }else{
+               
+                //     postItem(product)
                 // }
+                
             
-                navigate('/')
+                // navigate('/')
                 
             }}>Add element</button>
             <br/>

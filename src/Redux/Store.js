@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { Checkout } from './CheckoutSlice'
 import ItemReducer from './ItemSlice'
+import checkoutReducer from './CheckoutSlice'
 
-// console.log({ItemReducer})
+
 
 export const Store = configureStore({
   reducer: {
-    items: ItemReducer
+    items: ItemReducer,
+    checkout: checkoutReducer
   },
 })

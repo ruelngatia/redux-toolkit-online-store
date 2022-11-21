@@ -5,8 +5,8 @@ import Home from './Components/Home/Home';
 import {Store} from './Redux/Store'
 import { Provider } from 'react-redux';
 import AddingProducts from './Components/AddingProduct/AddProducts';
-
-
+import Login from './Components/Login/Login';
+import Cart from './Components/Cart/Cart';
 
 
 function App() {
@@ -18,6 +18,8 @@ function App() {
         <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/addProduct' element={<AddingProducts/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/checkout' element={<Cart/>}/>
         </Routes>
       </div>
     </Provider>

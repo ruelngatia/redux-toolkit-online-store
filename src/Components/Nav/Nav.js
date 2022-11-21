@@ -13,8 +13,8 @@ export default function Nav() {
             <Link className='li' to={'/'}><li>Shop</li></Link>
             <Link className='li' to={'/addProduct'}><li>Add Products</li></Link>
             <Link className='li' to={'/'}><li>About</li></Link>
-            <Link className='li' to={'/'}><li><AiOutlineShoppingCart/></li></Link>
-            <Link className='li' to={'/'}><li><MdAccountCircle/></li></Link>
+            <Link className='li' to={'/checkout'}><li><AiOutlineShoppingCart/></li></Link>
+            <Link className='li' to={'/login'}><li><MdAccountCircle/></li></Link>
         </ul>
     </div>
   )

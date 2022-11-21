@@ -1,17 +1,20 @@
 import Card from '../Card/Card';
 import './Home.css'
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useSelector, useDispatch  } from 'react-redux';
+import { getItemList } from '../../Redux/ItemSlice';
+import {  useEffect } from "react";
 
 export default function Home(){
 
     const litsItems = useSelector((state) => state.items.items)
+    const dispatch = useDispatch()
 
-    axios.post('https://online-store-b60ae-default-rtdb.firebaseio.com/items.json',{
-        'name':'Ruel|s'
-    })
+    useEffect(()=>{
+        dispatch(getItemList()) 
+    },[])
+   
 
-    // axios.get('https://online-store-b60ae-default-rtdb.firebaseio.com/Online store.json')
+    
 
     return (
         <div className='home'>
@@ -39,8 +42,8 @@ export default function Home(){
             </div>
             <div className='list-items'>
 
-                {litsItems.map((ele) => <Card key = {ele.id} element={ele} />)}
-
+                {Object.keys(litsItems).map((ele) => <Card keys={ele} element={ele}/>)}
+                
             </div>
         </div>
     );

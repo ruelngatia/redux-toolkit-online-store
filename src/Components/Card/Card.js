@@ -1,22 +1,25 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import './Card.css'
 
 
 
 export default function Card(props) {
 
+  const items = useSelector((state) => state.items.items)
+  const key = props.element
   
 
   return (
     <div className='card'>
         <div className='imgContainer'>
-           <img src={props.element.url} alt='con'/> 
+           <img src={items[key].url} alt='con' /> 
         </div>
-        <span>{props.element.url}</span>
+        <span>{items[key].name}</span>
         <br/>
-        <span>{props.element.url}</span>
+        <span>{items[key]?.price}</span>
         <span className='discount'>
-          {props.element.url}
+          {items[key]?.discount}
         </span>
 
     </div>

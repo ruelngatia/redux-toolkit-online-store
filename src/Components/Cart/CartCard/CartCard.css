@@ -1,0 +1,31 @@
+.cart-card{
+    margin-top: 1rem;
+}
+
+.card-item{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-inline: 2.2rem;
+    border-bottom: 1px solid #c5c5c5;
+    padding-bottom: .5rem;
+}
+
+.card-item img{
+    border-radius: 8%;
+}
+
+.card-item  :nth-child(3){
+    margin-left: auto;
+}
+
+.cart-card .card-item .item-counters button{
+    aspect-ratio: 1;
+    width: 1.5rem;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-weight: 700;
+    background-color: #615fe6;
+    margin: .8rem;
+}
