@@ -26,16 +26,18 @@ export default function Card(props) {
           {items[key]?.discount}
         </span>
         <br/>
-        <MdAddShoppingCart onClick={
-          ()=>{
-            dispatch(addCheckoutItems({
-              name: items[key].title,
-              price: items[key]?.price,
-              count: 1
-            }))
-            dispatch(setTotals(parseInt(items[key]?.price)))
-          }
-        }/>
+        <div className='add-cart-icon'>
+          <MdAddShoppingCart onClick={
+            ()=>{
+              dispatch(addCheckoutItems({
+                name: items[key].title,
+                price: items[key]?.price,
+                count: 1
+              }))
+              dispatch(setTotals(parseInt(items[key]?.price)))
+            }
+          }/>
+        </div>
 
     </div>
   )

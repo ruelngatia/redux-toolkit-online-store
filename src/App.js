@@ -8,6 +8,8 @@ import AddingProducts from './Components/AddingProduct/AddProducts';
 import Login from './Components/Login/Login';
 import Cart from './Components/Cart/Cart';
 import { useEffect } from 'react';
+import Contact from './Components/Contact.js/Contact';
+import About from './Components/About/About';
 
 
 function App() {
@@ -32,13 +34,12 @@ function App() {
             <Route path='/addProduct' element={<AddingProducts/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/checkout' element={<Cart/>}/>
+            <Route path='/contact' element={<Contact/>}/>
+            <Route path='/about' element={<About/>}/>
         </Routes>
       </div>
     </Provider>
       
-      
-     
-    
     
     </div>
   );
