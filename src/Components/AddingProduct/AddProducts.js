@@ -15,6 +15,7 @@ export default function AddingProducts(props){
     const [price ,setprice] = useState('')
     const [category ,setcategory] = useState('Electornics')
     const [image ,setimage] = useState('')
+    
 
    
 
@@ -39,10 +40,10 @@ export default function AddingProducts(props){
             alert('enter missing category')
             return false
         }
-        // if(image === '' || image == null){
-        //     alert('enter missing image')
-        //     return false
-        // }
+        if(image === '' || image == null){
+            alert('enter missing image')
+            return false
+        }
        
     }
 
@@ -85,9 +86,15 @@ export default function AddingProducts(props){
                 <input  id="inPrice"  type={'number'} onChange={(ele) => {setprice(ele.target.value)}}/>
             </div>
 
-            <div className="add-image">
-
+            <div>
+                <label>Image</label>
+                <br/>
+                <input id="image"  type={'text'} onChange={(ele) => {setimage(ele.target.value)} }/>     
             </div>
+
+            {/* <div className="add-image">
+
+            </div> */}
 
 
             <button type="button" onClick={()=>{
@@ -111,10 +118,11 @@ export default function AddingProducts(props){
                 }else{
                     console.log('called');
                     postItem(product)
+                    navigate('/')
                 }
                 dispatch(getItemList()) 
             
-                navigate('/')
+                
                 
             }}>Add element</button>
             <br/>
