@@ -42,8 +42,8 @@ export default function Home(){
             </div>
             <div className='list-items'>
 
-                {Object.keys(litsItems).map((ele) => <Card keys={ele} element={ele}/>)}
-                
+                {Object.keys(litsItems).map((ele) => <Card keys={ele} element={ele}/>)} 
+
             </div>
         </div>
     );

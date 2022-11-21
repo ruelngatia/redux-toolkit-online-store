@@ -42,7 +42,7 @@ export default function CartCard(props){
                     <span><button
                         onClick={()=>{
                             dispatch(subTotals(item.price))
-                            setItemcount(itemCount + 1)
+                            setItemcount(itemCount -1)
                         }}
                     >-</button></span>
                 </div>

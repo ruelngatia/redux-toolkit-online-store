@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import CartCard from "./CartCard/CartCard";
+import './Cart.css'
 
 export default function  Cart(){
 
@@ -16,7 +17,7 @@ export default function  Cart(){
 
 
 
-            <div className="check out">
+            <div className="check-out">
                 <span>Totals: {cartItems.totals}</span>
                 <br/>
                 <button>check out</button>

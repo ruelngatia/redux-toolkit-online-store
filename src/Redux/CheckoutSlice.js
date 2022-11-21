@@ -3,10 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     items:[
-        {
-            name: 'cow',
-            price: 100
-        }
+      
     ],
     totals:0
 }
@@ -23,7 +20,7 @@ export const Checkout = createSlice({
             state.totals = state.totals - action.payload 
         },
 
-        addItems: (state,action) =>{
+        addCheckoutItems: (state,action) =>{
             state.items.push(action.payload)
         },
 
@@ -34,6 +31,6 @@ export const Checkout = createSlice({
     }
 })
 
-export const {addItems,subTotals,addTotals} = Checkout.actions
+export const {addCheckoutItems,subTotals,addTotals} = Checkout.actions
 
 export default Checkout.reducer

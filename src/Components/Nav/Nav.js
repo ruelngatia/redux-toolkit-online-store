@@ -4,9 +4,11 @@ import {Link} from 'react-router-dom'
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdAccountCircle } from "react-icons/md";
 
-export default function Nav() {
+export default function Nav(props) {
   return (
-    <div className='Nav'>
+    <div className='Nav' style={
+      window.location.pathname == '/login'? {display:"none"}:{display:''}
+    }>
         <ul>
             <Link className='li' href={'/'}><li>Logo</li></Link>
             <Link className='li' to={'/'}><li>Home</li></Link>

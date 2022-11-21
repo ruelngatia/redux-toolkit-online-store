@@ -1,0 +1,18 @@
+.cart .check-out{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: 2;
+
+}
+
+.cart .check-out button{
+    width: 7rem;
+    padding-block: .4rem;
+    background-color: #615fe6;
+    color: white;
+    font-weight: 700;
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 4px;
+}

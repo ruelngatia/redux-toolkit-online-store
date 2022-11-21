@@ -1,6 +1,10 @@
+import { useNavigate } from 'react-router-dom'
 import './Login.css'
 
 export default function Login(){
+
+    const navigator = useNavigate()
+
     return(
         <div className="login">
             <div className='form'>
@@ -15,7 +19,13 @@ export default function Login(){
                         <input type={'password'} placeholder={'Password'}/>
                     </div>
                     <div>
-                        <button>Login</button>
+                        <button
+                        onClick={
+                            ()=>{
+                                navigator('/')
+                            }
+                        }
+                        >Login</button>
                     </div>
                 </form>
             </div>
