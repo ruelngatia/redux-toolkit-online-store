@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from 'axios'
 
 
 const initialState = {
@@ -8,7 +9,28 @@ const initialState = {
     totals:0
 }
 
-function calculateSum(items,sum){
+export const getAllItemsChart = createAsyncThunk('getting/products',async()=>{
+    let list = await axios.get('https://online-store-b60ae-default-rtdb.firebaseio.com/cart.json')
+    return list.data
+})
+
+export const addItemstoCart = createAsyncThunk('addingProducts',async(product)=>{
+    await axios.post('https://online-store-b60ae-default-rtdb.firebaseio.com/cart',product)
+})
+
+export const changeProductCount = createAsyncThunk('product/increase',async(id,change)=>{
+    let res = await axios.patch(`https://online-store-b60ae-default-rtdb.firebaseio.com/cart/${id}.json`,change)
+    
+    console.log(change);
+})
+
+export const removeProduct = createAsyncThunk('remove/product',async(id)=>{
+    let res = await axios.delete(`https://online-store-b60ae-default-rtdb.firebaseio.com/cart/${id}.json`)
+    console.log(res);
+})
+
+function calculateSum(items){
+    let sum = 0
     items.forEach(element => {
         sum = sum + parseInt((element.count * element.price ))
     });
@@ -20,16 +42,13 @@ export const Checkout = createSlice({
     name:'checkoutSlice',
     initialState: initialState,
     reducers: {
-        setTotals: (state,action)=>{
-            state.totals = action.payload
-        },
-
+       
         addTotals: (state,action)=>{
             state.totals = state.totals + parseInt(action.payload)
         },
 
         subTotals: (state,action)=>{
-            state.totals = state.totals - parseInt(action.payload)
+            state.totals = calculateSum(state.items)
         },
 
         addCheckoutItems: (state,action) =>{
@@ -38,19 +57,37 @@ export const Checkout = createSlice({
 
         removeItems: (state,action)=>{
             state.items.splice(action.payload,1)
-            state.totals = calculateSum(state.items,state.totals)
+            state.totals = calculateSum(state.items)
         },
 
         addItemCount: (state, action)=>{
             state.items[action.payload].count = state.items[action.payload].count + 1
-            state.totals = calculateSum(state.items,state.totals)
+            state.totals = calculateSum(state.items)
         },
 
         subItemCount: (state, action)=>{
             state.items[action.payload].count = state.items[action.payload].count - 1
-            state.totals = calculateSum(state.items,state.totals)
+            state.totals = calculateSum(state.items)
         }
 
+    },
+
+    extraReducers: (builder)=>{
+        
+        builder.addCase(getAllItemsChart.fulfilled,(state,action)=>{
+            state.items = []
+            let obj = action.payload;
+            let keys = Object.keys(obj)
+            keys.forEach((key)=>{
+                state.items.push({...obj[key],idInChart:key})
+            })
+        })
+        builder.addCase(addItemstoCart.fulfilled,(state,action)=>{
+            state.items = action.payload
+        })
+        builder.addCase(changeProductCount.fulfilled,(state,action)=>{
+            // change count
+        })
     }
 })
 

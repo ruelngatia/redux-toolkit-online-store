@@ -3,6 +3,7 @@ import './Home.css'
 import { useSelector, useDispatch  } from 'react-redux';
 import { getItemList } from '../../Redux/ItemSlice';
 import {  useEffect } from "react";
+import { getAllItemsChart, subTotals } from '../../Redux/CheckoutSlice';
 
 export default function Home(){
 
@@ -11,10 +12,10 @@ export default function Home(){
 
     useEffect(()=>{
         dispatch(getItemList()) 
+        dispatch(getAllItemsChart())
+        // dispatch(subTotals())
     },[])
    
-
-    
 
     return (
         <div className='home'>
@@ -42,6 +43,7 @@ export default function Home(){
             </div>
             <div className='list-items'>
 
+                {Object.keys(litsItems).map((ele) => <Card keys={ele} element={ele}/>)} 
                 {Object.keys(litsItems).map((ele) => <Card keys={ele} element={ele}/>)} 
 
             </div>

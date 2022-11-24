@@ -49,4 +49,9 @@
     padding-inline: 15px;
     padding-block: 8px;
     margin-bottom: 20px;
+    background-color: rgba(104, 100, 216, 0.996);
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
 }

@@ -4,9 +4,8 @@ import axios from "axios";
 
 
 export const getItemList = createAsyncThunk('fetch/allItems',
-    async() =>{
+    async(_,o) =>{
         let list = await axios.get('https://online-store-b60ae-default-rtdb.firebaseio.com/items.json')
-        
         return list.data
     }
 )
@@ -14,7 +13,6 @@ export const getItemList = createAsyncThunk('fetch/allItems',
 
 const initialValue = {
     loading:false,
-    // items:[]
     items: {}
 }
 

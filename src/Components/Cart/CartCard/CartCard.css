@@ -13,6 +13,8 @@
 
 .card-item img{
     border-radius: 8%;
+    aspect-ratio: 1;
+    width: 6.25rem;
 }
 
 .card-item  :nth-child(3){
