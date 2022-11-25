@@ -39,7 +39,6 @@ export const removeProduct = createAsyncThunk('remove/product',async(id,thunk)=>
         thunk.dispatch(subTotals())
     })
     
-    // thunk.dispatch(subTotals())
     console.log(res);
 })
 

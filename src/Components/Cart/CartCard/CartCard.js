@@ -59,10 +59,8 @@ export default function CartCard(props){
                 </div>
                 
                     <span className='del' onClick={
-                        ()=>{
-                            // dispatch(removeItems((props.id-1)))
-                            dispatch(removeProduct(item.idInChart))
-                            console.log(item.idInChart);
+                        ()=>{                         
+                            dispatch(removeProduct(item.idInChart))       
                         }
                         }><MdDeleteOutline/>
                     </span>
