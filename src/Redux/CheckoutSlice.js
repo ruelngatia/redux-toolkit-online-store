@@ -97,6 +97,7 @@ export const Checkout = createSlice({
             keys.forEach((key)=>{
                 state.items.push({...obj[key],idInChart:key})
             })
+            subTotals()
         })
         builder.addCase(addItemstoCart.fulfilled,(state,action)=>{
             state.items = action.payload

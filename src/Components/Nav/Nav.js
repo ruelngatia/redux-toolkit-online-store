@@ -20,7 +20,12 @@ export default function Nav(props) {
             <Link className='li' to={'/addProduct'}><li>Add Products</li></Link>
             <Link className='li' to={'/about'}><li>About</li></Link>
             <Link className='li' to={'/checkout'}><li><span className='amount-span'><AiOutlineShoppingCart size={20}/><span id='amount'>{itemCount.length}</span></span></li></Link>
-            <Link className='li' to={'/login'}><li><MdAccountCircle size={20}/></li></Link>
+            <Link className='li' to={'/login'}>
+              <li><MdAccountCircle size={20}/>
+              <ul >
+                <li>log out</li>
+              </ul>
+            </li></Link>
         </ul>
     </div>
   )
