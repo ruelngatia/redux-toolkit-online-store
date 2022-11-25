@@ -22,8 +22,9 @@ export const changeProductCount = createAsyncThunk('product/increase',async(chan
   
     let res = await axios.patch(`https://online-store-b60ae-default-rtdb.firebaseio.com/cart/${change.id}.json`,{count:change.count})
     .then(()=>{
-        thunk.dispatch(subTotals())
         thunk.dispatch(getAllItemsChart())
+    }).then(()=>{
+        thunk.dispatch(subTotals())
     })
     
     console.log(change.count);
@@ -33,6 +34,8 @@ export const removeProduct = createAsyncThunk('remove/product',async(id,thunk)=>
     let res = await axios.delete(`https://online-store-b60ae-default-rtdb.firebaseio.com/cart/${id}.json`)
     .then(()=>{
         thunk.dispatch(getAllItemsChart())
+        
+    }).then(()=>{
         thunk.dispatch(subTotals())
     })
     

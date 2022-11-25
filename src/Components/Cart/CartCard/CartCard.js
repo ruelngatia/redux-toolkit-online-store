@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { addItemCount, addTotals, changeProductCount, removeItems, removeProduct, subItemCount, subTotals } from '../../../Redux/CheckoutSlice'
+import { addItemCount, addTotals, changeProductCount, getAllItemsChart, removeItems, removeProduct, subItemCount, subTotals } from '../../../Redux/CheckoutSlice'
 import './CartCard.css'
 import { MdDeleteOutline } from "react-icons/md";
 
@@ -41,12 +41,12 @@ export default function CartCard(props){
                     <span>{item.count}</span>
                     <span><button
                         onClick={()=>{
-                            // dispatch(subTotals(item.price))
-                            // dispatch(subItemCount((props.id-1)))
-                            // if(item.count === 1){
-                            //     dispatch(removeItems((props.id-1)))
-                            // }
+                           
                             let price = parseInt(item.count)
+                             if(price === 1){
+                                dispatch(removeProduct(item.idInChart))
+                                return
+                            }
                             dispatch(changeProductCount(
                                 {
                                     id:item.idInChart,
