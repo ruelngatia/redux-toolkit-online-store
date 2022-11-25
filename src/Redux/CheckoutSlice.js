@@ -24,8 +24,10 @@ export const changeProductCount = createAsyncThunk('product/increase',async(id,c
     console.log(change);
 })
 
-export const removeProduct = createAsyncThunk('remove/product',async(id)=>{
+export const removeProduct = createAsyncThunk('remove/product',async(id,thunk)=>{
     let res = await axios.delete(`https://online-store-b60ae-default-rtdb.firebaseio.com/cart/${id}.json`)
+    thunk.dispatch(getAllItemsChart())
+    // thunk.dispatch(subTotals())
     console.log(res);
 })
 
