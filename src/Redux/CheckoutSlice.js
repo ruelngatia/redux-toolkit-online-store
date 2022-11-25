@@ -18,15 +18,24 @@ export const addItemstoCart = createAsyncThunk('addingProducts',async(product)=>
     await axios.post('https://online-store-b60ae-default-rtdb.firebaseio.com/cart',product)
 })
 
-export const changeProductCount = createAsyncThunk('product/increase',async(id,change)=>{
-    let res = await axios.patch(`https://online-store-b60ae-default-rtdb.firebaseio.com/cart/${id}.json`,change)
+export const changeProductCount = createAsyncThunk('product/increase',async(change,thunk)=>{
+  
+    let res = await axios.patch(`https://online-store-b60ae-default-rtdb.firebaseio.com/cart/${change.id}.json`,{count:change.count})
+    .then(()=>{
+        thunk.dispatch(subTotals())
+        thunk.dispatch(getAllItemsChart())
+    })
     
-    console.log(change);
+    console.log(change.count);
 })
 
 export const removeProduct = createAsyncThunk('remove/product',async(id,thunk)=>{
     let res = await axios.delete(`https://online-store-b60ae-default-rtdb.firebaseio.com/cart/${id}.json`)
-    thunk.dispatch(getAllItemsChart())
+    .then(()=>{
+        thunk.dispatch(getAllItemsChart())
+        thunk.dispatch(subTotals())
+    })
+    
     // thunk.dispatch(subTotals())
     console.log(res);
 })
@@ -79,6 +88,9 @@ export const Checkout = createSlice({
         builder.addCase(getAllItemsChart.fulfilled,(state,action)=>{
             state.items = []
             let obj = action.payload;
+            if(obj == null){
+                return
+            }
             let keys = Object.keys(obj)
             keys.forEach((key)=>{
                 state.items.push({...obj[key],idInChart:key})

@@ -24,8 +24,18 @@ export default function CartCard(props){
                 <div className='item-counters'>
                     <span><button
                         onClick={()=>{
-                            dispatch(addTotals(item.price))
-                            dispatch(addItemCount((props.id-1)))
+                            // dispatch(addTotals(item.price))
+                            // dispatch(addItemCount((props.id-1)))
+                            let price = parseInt(item.count)
+
+                            dispatch(changeProductCount(
+                                {
+                                    id:item.idInChart,
+                                    count: (price = price +1)
+                                }
+                            ))
+                            dispatch(subTotals())
+
                         }}
                     >+</button></span>
                     <span>{item.count}</span>
@@ -36,10 +46,11 @@ export default function CartCard(props){
                             // if(item.count === 1){
                             //     dispatch(removeItems((props.id-1)))
                             // }
-
-                            dispatch(changeProductCount(item.idInChart,
+                            let price = parseInt(item.count)
+                            dispatch(changeProductCount(
                                 {
-                                    count: 2
+                                    id:item.idInChart,
+                                    count: (price = price -1)
                                 }
                             ))
                             dispatch(subTotals())

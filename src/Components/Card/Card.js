@@ -40,8 +40,10 @@ export default function Card(props) {
                   image: items[key].image,
                   count: 1
                 }
-              )
-              dispatch(getAllItemsChart())
+              ).then(()=>{
+                dispatch(getAllItemsChart())
+              })
+              
 
 
             }
